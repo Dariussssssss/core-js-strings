@@ -181,8 +181,10 @@ function removeLastOccurrences(str, value) {
  */
 function sumOfCodes(str) {
   let sum = 0;
-  for (let i = 0; i < str.length; i += 1) {
-    sum += str.charCodeAt(i);
+  if (typeof str === 'string') {
+    for (let i = 0; i < str.length; i += 1) {
+      sum += str.charCodeAt(i);
+    }
   }
   return sum;
 }
@@ -261,8 +263,8 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  // throw new Error("Not implemented");
+function orderAlphabetically(str) {
+  return str.split('').sort().join('');
 }
 
 /**
@@ -356,7 +358,9 @@ function findLongestWord(sentence) {
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
 function reverseWords(str) {
-  return str.split('').reverse().join('');
+  const string = str.split(' ');
+  const result = string.map((el) => el.split('').reverse().join(''));
+  return result.join(' ');
 }
 
 /**
