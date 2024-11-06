@@ -290,8 +290,16 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  // throw new Error("Not implemented");
+function countVowels(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+  const strM = str.split('');
+  return strM.reduce((sum, el) => {
+    if (vowels.indexOf(el) !== -1) {
+      // eslint-disable-next-line no-param-reassign
+      sum += 1;
+    }
+    return sum;
+  }, 0);
 }
 
 /**
@@ -307,8 +315,9 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  // throw new Error("Not implemented");
+function isPalindrome(str) {
+  const palindrome = str.split('').reverse().join('');
+  return palindrome === str;
 }
 
 /**
@@ -323,8 +332,12 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  // throw new Error("Not implemented");
+function findLongestWord(sentence) {
+  const sentenceSplit = sentence.split(' ');
+  let max = sentenceSplit[0];
+  // eslint-disable-next-line no-return-assign
+  sentenceSplit.map((word) => (word.length > max.length ? (max = word) : max));
+  return max;
 }
 
 /**
@@ -337,8 +350,8 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  // throw new Error("Not implemented");
+function reverseWords(str) {
+  return str.split('').reverse().join('');
 }
 
 /**
@@ -352,8 +365,12 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  // throw new Error("Not implemented");
+function invertCase(str) {
+  const string = str.split('');
+  const result = string.map((el) =>
+    el === el.toLowerCase() ? el.toUpperCase() : el.toLowerCase()
+  );
+  return result.join('');
 }
 
 /**
