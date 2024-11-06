@@ -147,7 +147,9 @@ function repeatString(str, n) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  return str.replace(value, '');
+  const index = str.indexOf(value);
+  if (index === -1) return str;
+  return str.slice(0, index) + str.slice(index + value.length);
 }
 
 /**
@@ -163,8 +165,9 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  const result = str.replace(value, '');
-  return result;
+  const index = str.lastIndexOf(value);
+  if (index === -1) return str;
+  return str.slice(0, index) + str.slice(index + value.length);
 }
 
 /**
@@ -323,8 +326,12 @@ function countVowels(str) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  const palindrome = str.split('').reverse().join('');
-  return palindrome === str;
+  const string = str
+    .toLowerCase()
+    .replaceAll(' ', '')
+    .replace(/[^\w\s]|_/g, '');
+  const palindrome = string.split('').reverse().join('');
+  return palindrome === string;
 }
 
 /**
@@ -396,7 +403,7 @@ function invertCase(str) {
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return `Hello, ${firstName}, ${lastName}`;
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -409,8 +416,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  // throw new Error("Not implemented");
+function extractNameFromTemplate(value) {
+  return value.split('Hello,').join('').split('!').join('').trim();
 }
 
 /**
